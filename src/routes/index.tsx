@@ -98,6 +98,25 @@ function Home() {
 
   useEffect(() => () => window.clearTimeout(navigationTimer.current), [])
 
+  useEffect(() => {
+    if (window.matchMedia('(hover: none), (pointer: coarse), (prefers-reduced-motion: reduce)').matches) return
+    let lastSparkle = 0
+    const onPointerMove = (event: PointerEvent) => {
+      const now = performance.now()
+      if (now - lastSparkle < 90) return
+      lastSparkle = now
+      const sparkle = document.createElement('span')
+      sparkle.className = 'cursor-sparkle'
+      sparkle.textContent = Math.random() > 0.5 ? '✦' : '♡'
+      sparkle.style.left = `${event.clientX}px`
+      sparkle.style.top = `${event.clientY}px`
+      document.body.appendChild(sparkle)
+      window.setTimeout(() => sparkle.remove(), 800)
+    }
+    window.addEventListener('pointermove', onPointerMove, { passive: true })
+    return () => window.removeEventListener('pointermove', onPointerMove)
+  }, [])
+
   const goTo = (index: number) => {
     window.clearTimeout(navigationTimer.current)
     document.getElementById(`scene-${index}`)?.scrollIntoView({
