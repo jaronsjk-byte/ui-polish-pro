@@ -229,6 +229,7 @@ function Home() {
           <button className="pill-button seal-button" type="button" disabled={sealed} onClick={() => setSealed(true)}><span className="seal-mark">LP <HeartIcon /></span><span>{sealed ? 'Our promise is sealed' : 'Seal our promise'}</span><ArrowIcon /></button>
           {sealed && <div className="sealed-message"><p>No matter how small this page is, I made it with a big place in my heart for you. This is our little promise.<span>always, me <HeartIcon /></span></p><button className="replay-button" type="button" onClick={replay}><svg className="replay-mark" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11a9 9 0 1 1 2.6 6.4M3 4v7h7" /></svg> Read our promise again</button></div>}
           <p className="footnote">{sealed ? 'promise kept close, always' : 'a soft place to come back to'}</p>
+          <a className="herbarium-entry-link" href="/herbarium">Make a little garden in glyphs <span aria-hidden="true">↗</span></a>
         </div>
       </section>
     </main>

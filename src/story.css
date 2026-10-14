@@ -31,3 +31,5 @@ html:has(.promise-page){scroll-behavior:smooth;background:#090708;scroll-snap-ty
 .cursor-sparkle{position:fixed;z-index:1000;left:0;top:0;pointer-events:none;color:#ef8b9a;font-size:14px;line-height:1;will-change:transform,opacity;animation:cursor-sparkle-fade .75s ease-out forwards;text-shadow:0 0 10px #d94a6070}
 @keyframes cursor-sparkle-fade{0%{opacity:0;transform:translate(-50%,-50%) scale(.5) rotate(-10deg)}20%{opacity:.9}100%{opacity:0;transform:translate(-50%,-85%) scale(1.25) rotate(18deg)}}
 @media(prefers-reduced-motion:reduce){.cursor-sparkle{display:none}}
+
+.herbarium-entry-link{display:inline-flex;align-items:center;gap:12px;margin-top:22px;padding:10px 0;border-bottom:1px solid #6c7f5a;color:#d7c8b7;font:11px/1.5 var(--font-mono);letter-spacing:.04em;text-decoration:none;transition:color .2s,border-color .2s}.herbarium-entry-link span{color:#d94a60;font-size:16px}.herbarium-entry-link:hover{color:#fff0e5;border-color:#d94a60}.herbarium-entry-link:focus-visible{outline:2px solid #e3818b;outline-offset:4px}
