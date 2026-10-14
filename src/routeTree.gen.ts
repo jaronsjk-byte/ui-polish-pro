@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HerbariumRouteImport } from './routes/herbarium'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 
 const AppRoute = AppRouteImport.update({
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HerbariumRoute = HerbariumRouteImport.update({
+  id: '/herbarium',
+  path: '/herbarium',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -30,35 +36,46 @@ const AppIndexRoute = AppIndexRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/herbarium': typeof HerbariumRoute
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
+  '/herbarium': typeof HerbariumRoute
   '/': typeof IndexRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/herbarium': typeof HerbariumRoute
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/app/'
+  fullPaths: '/' | '/herbarium' | '/app' | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app'
-  id: '__root__' | '/' | '/app' | '/app/'
+  to: '/' | '/herbarium' | '/app'
+  id: '__root__' | '/' | '/herbarium' | '/app' | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  HerbariumRoute: typeof HerbariumRoute
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/herbarium': {
+      id: '/herbarium'
+      path: '/herbarium'
+      fullPath: '/herbarium'
+      preLoaderRoute: typeof HerbariumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app': {
       id: '/app'
       path: '/app'
@@ -94,6 +111,7 @@ const AppRouteChildren: AppRouteChildren = {
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
+  HerbariumRoute: HerbariumRoute,
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
 }
